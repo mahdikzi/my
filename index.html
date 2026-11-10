@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>مهدی کزازی | مهندس شبکه وامنیت</title>
+  <meta name="description" content="پورتفولیوی شخصی">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0f1419;
+      --surface: #161d25;
+      --text: #e6e2d8;
+      --muted: #8d969f;
+      --line: #263039;
+      --accent: #d08a4e;      /* copper */
+      --focus: #f2b47c;
+      --radius: 6px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+
+    body {
+      font-family: "Vazirmatn", Tahoma, sans-serif;
+      font-weight: 400;
+      line-height: 1.9;
+      background: var(--bg);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    :focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; border-radius: 3px; }
+
+    .wrap { max-width: 880px; margin: 0 auto; padding: 0 24px; }
+
+    /* ---------- Top bar ---------- */
+    header.top {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(15, 20, 25, 0.85);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--line);
+    }
+    header.top .wrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      height: 64px;
+      flex-wrap: wrap;
+      padding-top: 8px;
+      padding-bottom: 8px;
+    }
+    .brand { font-weight: 800; letter-spacing: 0; direction: ltr; }
+    nav ul { list-style: none; display: flex; gap: 20px; flex-wrap: wrap; }
+    nav a { color: var(--muted); font-size: 0.95rem; transition: color .2s; }
+    nav a:hover { color: var(--text); }
+
+    .lang-btn {
+      background: none;
+      border: 1px solid var(--line);
+      color: var(--text);
+      font: inherit;
+      font-size: 0.85rem;
+      padding: 4px 12px;
+      border-radius: 999px;
+      cursor: pointer;
+    }
+    .lang-btn:hover { border-color: var(--accent); }
+
+    /* ---------- Hero ---------- */
+    .hero { padding: 96px 0 72px; }
+    .hero h1 {
+      font-size: clamp(2.4rem, 6vw, 3.6rem);
+      font-weight: 800;
+      line-height: 1.3;
+      margin-bottom: 16px;
+    }
+    .hero .role { font-size: 1.25rem; color: var(--accent); margin-bottom: 24px; }
+    .hero .intro { color: var(--muted); max-width: 620px; margin-bottom: 36px; }
+
+    .btn {
+      display: inline-block;
+      padding: 10px 22px;
+      border-radius: var(--radius);
+      border: 1px solid var(--accent);
+      font-size: 0.95rem;
+      transition: background .2s, color .2s;
+    }
+    .btn.solid { background: var(--accent); color: var(--bg); font-weight: 600; }
+    .btn.solid:hover { background: var(--focus); border-color: var(--focus); }
+    .btn.ghost:hover { background: rgba(208, 138, 78, 0.12); }
+    .actions { display: flex; gap: 12px; flex-wrap: wrap; }
+
+    /* ---------- Sections ---------- */
+    section { padding: 72px 0; border-top: 1px solid var(--line); }
+    section h2 { font-size: 1.8rem; font-weight: 700; margin-bottom: 8px; }
+    section > .wrap > p.lead { color: var(--muted); margin-bottom: 40px; max-width: 620px; }
+
+    /* About */
+    .about-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 40px; }
+    .about-grid p { color: var(--muted); }
+    .facts { display: grid; gap: 16px; align-content: start; }
+    .facts div { border-inline-start: 2px solid var(--accent); padding-inline-start: 14px; }
+    .facts strong { display: block; font-size: 1.6rem; font-weight: 800; }
+    .facts span { color: var(--muted); font-size: 0.9rem; }
+
+    /* Expertise: rows, not cards */
+    .expertise-list { border-top: 1px solid var(--line); }
+    .expertise-list li {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 24px;
+      padding: 22px 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .expertise-list h3 { font-size: 1.1rem; font-weight: 600; }
+    .expertise-list p { color: var(--muted); font-size: 0.95rem; }
+
+    /* Skills */
+    .tags { display: flex; flex-wrap: wrap; gap: 10px; }
+    .tags span {
+      font-size: 0.9rem;
+      padding: 6px 14px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      direction: ltr;
+    }
+
+    /* Projects */
+    .projects { display: grid; gap: 20px; }
+    .project {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 26px 28px;
+    }
+    .project h3 { font-size: 1.2rem; margin-bottom: 6px; }
+    .project p { color: var(--muted); font-size: 0.95rem; margin-bottom: 14px; }
+    .project .tags span { font-size: 0.8rem; padding: 3px 10px; }
+    .project a.more { color: var(--accent); font-size: 0.9rem; display: inline-block; margin-top: 12px; }
+    .project a.more:hover { text-decoration: underline; }
+
+    .note {
+      border: 1px dashed var(--line);
+      border-radius: var(--radius);
+      padding: 20px 24px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    /* Contact */
+    .contact p { color: var(--muted); margin-bottom: 24px; max-width: 620px; }
+
+    footer { border-top: 1px solid var(--line); padding: 28px 0; color: var(--muted); font-size: 0.85rem; }
+    footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+
+    /* One deliberate moment: the hero fades in on load */
+    .hero > .wrap > * { animation: rise .7s ease both; }
+    .hero > .wrap > *:nth-child(2) { animation-delay: .08s; }
+    .hero > .wrap > *:nth-child(3) { animation-delay: .16s; }
+    .hero > .wrap > *:nth-child(4) { animation-delay: .24s; }
+    @keyframes rise { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+
+    /* ---------- Responsive ---------- */
+    @media (max-width: 680px) {
+      .hero { padding: 64px 0 48px; }
+      .about-grid { grid-template-columns: 1fr; }
+      .expertise-list li { grid-template-columns: 1fr; gap: 6px; }
+      nav ul { gap: 14px; }
+      header.top .wrap { height: auto; padding-top: 12px; padding-bottom: 12px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="top">
+    <div class="wrap">
+      <a class="brand" href="#home">Mahdi Kazazi</a>
+      <nav>
+        <ul>
+          <li><a href="#about" data-fa="درباره من" data-en="About">درباره من</a></li>
+          <li><a href="#expertise" data-fa="تخصص‌ها" data-en="Expertise">تخصص‌ها</a></li>
+          <li><a href="#skills" data-fa="مهارت‌ها" data-en="Skills">مهارت‌ها</a></li>
+          <li><a href="#projects" data-fa="پروژه‌ها" data-en="Projects">پروژه‌ها</a></li>
+          <li><a href="#contact" data-fa="تماس" data-en="Contact">تماس</a></li>
+        </ul>
+      </nav>
+      <button class="lang-btn" id="lang-toggle" type="button">English</button>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <div class="hero" id="home">
+      <div class="wrap">
+        <h1 data-fa="مهدی کزازی" data-en="Mahdi Kazazi">مهدی کزازی</h1>
+        <p class="role" data-fa="مهندس نرم‌افزار و زیرساخت" data-en="Network & Cyber-security Engineer">مهندس شبکه و امنیت</p>
+        <p class="intro" data-fa="فعال در حوزه مدیریت شبکه های کامپیوتری و پایش و ایمن سازی آنها"
+           data-en="Active in the field of computer network management, monitoring, and securing.">فعال در حوزه مدیریت شبکه های کامپیوتری و پایش و ایمن سازی آنها </p>
+        <div class="actions">
+          <a class="btn solid" href="#projects" data-fa="دیدن پروژه‌ها" data-en="View projects">دیدن پروژه‌ها</a>
+          <a class="btn ghost" href="#contact" data-fa="ارتباط با من" data-en="Get in touch">ارتباط با من</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- About -->
+    <section id="about">
+      <div class="wrap about-grid">
+        <div>
+          <h2 data-fa="درباره من" data-en="About me">درباره من</h2>
+          <p style="margin-top:16px" data-fa="فارغ التحصیل رشته مهندسی کامپیوتر گرایش نرم افزار"
+             data-en="Graduated in Computer Engineering, specializing in Software">فارغ التحصیل رشته مهندسی کامپیوتر گرایش نرم افزار</p>
+          <p style="margin-top:16px" data-fa="تحلیل گر و فعال در حوزه امنیت شبکه ، نرم افزار و پایش سیستمیک"
+             data-en="Analyst and practitioner in the fields of network security, software, and systemic monitoring">تحلیل گر و فعال در حوزه امنیت شبکه ، نرم افزار و پایش سیستمیک</p>
+          <p style="margin-top:16px" data-fa="مجرب در زمینه ادمینی شبکه و مدیریت اکتیو دایرکتوری"
+             data-en="Experienced in network administration and Active Directory management.">مجرب در زمینه ادمینی شبکه و مدیریت اکتیو دایرکتوری</p>
+          <p style="margin-top:16px" data-fa="متمرکز بر وب اپلیکیشن پنتست، آشنا با 10 Top OWASP و در حال یادگیری باگ بانتی"
+             data-en="Focused on web application penetration testing, familiar with the OWASP Top 10, and currently learning about bug bounties.">متمرکز بر وب اپلیکیشن پنتست، آشنا با 10 Top OWASP و در حال یادگیری باگ بانتی</p>
+        </div>
+        <div class="facts">
+          <div><strong>2+</strong><span data-fa="سال تجربه" data-en="years of experience">سال تجربه</span></div>
+          <div><strong>10+</strong><span data-fa="پروژه‌ی انجام‌شده" data-en="projects completed">پروژه‌ی انجام‌شده</span></div>
+          <div><strong>24/7</strong><span data-fa="یادگیری مداوم" data-en="continuous learning">یادگیری مداوم</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Expertise -->
+    <section id="expertise">
+      <div class="wrap">
+        <h2 data-fa="تخصص‌ها" data-en="Expertise">تخصص‌ها</h2>
+        <p class="lead" data-fa="حوزه‌هایی که روی آن‌ها کار می‌کنم و در آن‌ها مسئله حل کرده‌ام." data-en="The areas I work in and have solved problems in.">حوزه‌هایی که روی آن‌ها کار می‌کنم و در آن‌ها مسئله حل کرده‌ام.</p>
+        <ul class="expertise-list">
+          <li>
+            <h3 data-fa="توسعه‌ی نرم‌افزار و وب" data-en="Software & web development">توسعه‌ی نرم‌افزار و وب</h3>
+            <p data-fa="ساخت ابزار و وب‌سایت با Python، JavaScript و طراحی واکنش‌گرا." data-en="Building tools and websites with Python, JavaScript and responsive design.">ساخت ابزار و وب‌سایت با Python، JavaScript ، Angular و طراحی واکنش‌گرا.</p>
+          </li>
+          <li>
+            <h3 data-fa="شبکه" data-en="Networking">شبکه</h3>
+            <p data-fa="طراحی، پیکربندی و عیب‌یابی شبکه با TCP/IP، DNS، DHCP، VLAN و مسیریابی." data-en="Designing, configuring and troubleshooting networks with TCP/IP, DNS, DHCP, VLANs and routing.">طراحی، پیکربندی و عیب‌یابی شبکه با TCP/IP، DNS، DHCP، VLAN و مسیریابی.</p>
+          </li>
+          <li>
+            <h3 data-fa="لینوکس و Windows" data-en="Linux & infrastructure">لینوکس و Windows</h3>
+            <p data-fa="مدیریت سرور، سرویس‌ها، دسترسی‌ها و اسکریپت‌نویسی با Bash." data-en="Server management,Active-Directory Users Support, services, access control and scripting with Bash.">مدیریت سرور،پشتیبانی کاربران Active-Directory، سرویس‌ها، دسترسی‌ها و اسکریپت‌نویسی با Bash.</p>
+          </li>
+          <li>
+            <h3 data-fa="امنیت" data-en="Security">امنیت</h3>
+            <p data-fa="بررسی امنیت شبکه و وب و آشنایی عملی با مفاهیم حمله و دفاع." data-en="Network and web security reviews, with hands-on knowledge of attack and defence concepts.">بررسی امنیت شبکه و وب و آشنایی عملی با مفاهیم حمله و دفاع.</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills">
+      <div class="wrap">
+        <h2 data-fa="مهارت‌های نرم افزاری" data-en="Software Skills">مهارت‌ها</h2>
+        <p class="lead" data-fa="ابزارها و فناوری‌هایی که استفاده می‌کنم یا در حال یادگیری‌شان هستم." data-en="Tools and technologies I use or am currently learning.">ابزارها و فناوری‌هایی که استفاده می‌کنم یا در حال یادگیری‌شان هستم.</p>
+        <div class="tags">
+          <span>Windows Server</span><span>MCSA</span><span>Wireshark</span><span>JavaScript</span><span>HTML</span><span>CSS</span><span>Python</span>
+          <span>Bash</span><span>Linux</span><span>SSH</span><span>Git</span>
+          <span>TCP/IP</span><span>DNS</span><span>DHCP</span><span>VLAN</span>
+          <span>Routing</span><span>Switching</span><span>VMware</span>
+          <span>Web Security</span><span>Network Security</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects">
+      <div class="wrap">
+        <!--
+        <h2 data-fa="پروژه‌ها" data-en="Projects">پروژه‌ها</h2>
+        <p class="lead" data-fa="چند نمونه کار. برای هر پروژه می‌توانید لینک گیت‌هاب یا توضیح بیشتر بگذارید." data-en="A few selected works. Add a GitHub link or more detail for each project.">چند نمونه کار. برای هر پروژه می‌توانید لینک گیت‌هاب یا توضیح بیشتر بگذارید.</p>
+
+        <div class="projects">
+          <article class="project">
+            <h3 data-fa="نام پروژه‌ی اول" data-en="Project one name">نام پروژه‌ی اول</h3>
+            <p data-fa="توضیح کوتاه: این پروژه چه مشکلی را حل می‌کند و نقش شما در آن چه بوده است."
+               data-en="Short description: what problem this project solves and what your role was.">توضیح کوتاه: این پروژه چه مشکلی را حل می‌کند و نقش شما در آن چه بوده است.</p>
+            <div class="tags"><span>Python</span><span>Linux</span></div>
+            <a class="more" href="https://github.com/your-username" target="_blank" rel="noopener" data-fa="مشاهده در گیت‌هاب" data-en="View on GitHub">مشاهده در گیت‌هاب</a>
+          </article>
+
+          <article class="project">
+            <h3 data-fa="نام پروژه‌ی دوم" data-en="Project two name">نام پروژه‌ی دوم</h3>
+            <p data-fa="توضیح کوتاه درباره‌ی پروژه‌ی دوم و نتیجه‌ی آن."
+               data-en="Short description of the second project and its outcome.">توضیح کوتاه درباره‌ی پروژه‌ی دوم و نتیجه‌ی آن.</p>
+            <div class="tags"><span>JavaScript</span><span>HTML</span></div>
+          </article>
+      -->
+          <div class="note" data-fa="اغلب پروژه‌های انجام شده به دلیل محدودیت‌های مالکیت یا محرمانگی جزئیات عمومی ندارند. در صورت نیاز جزئیات لازم به کارفرمایان گرامی ارائه خواهد شد."
+               data-en="most projects cannot be shared in detail due to ownership or confidentiality.">اغلب پروژه‌های انجام شده به دلیل محدودیت‌های مالکیت یا محرمانگی جزئیات عمومی ندارند. در صورت نیاز جزئیات لازم به کارفرمایان گرامی ارائه خواهد شد.</div>
+        </div>
+      </div>
+    </section>
+   
+
+    <!-- Contact -->
+    <section id="contact" class="contact">
+      <div class="wrap">
+        <h2 data-fa="تماس" data-en="Contact">تماس</h2>
+        <p style="margin-top:16px" data-fa="برای همکاری، سؤال یا گفت‌وگوی فنی خوشحال می‌شوم از طریق یکی از راه‌های زیر با من در تماس باشید."
+           data-en="For collaboration, questions or a technical conversation, reach out to me through any of the channels below.">برای همکاری، طرح مسئله یا گفت‌وگوی فنی خوشحال می‌شوم از طریق یکی از راه‌های زیر با من در تماس باشید.</p>
+        <div class="actions">
+          <a class="btn solid" href="https://t.me/mahdi_kzi" target="_blank" rel="noopener">Telegram</a>
+          <a class="btn ghost" href="mailto:kzz.webdev@gmail.com">ایمیل</a>
+          <a class="btn solid" href="https://jobvision.ir/cv/60203447-231443" target="_blank" rel="noopener">جاب ویژن</a>
+          <a class="btn ghost" href="https://www.e-estekhdam.com/cv/138b208febcc4e"target="_blank" rel="noopener">ای-استخدام</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <span>© <span id="year"></span>مهدی کزازی</span>
+      <span data-fa="طراحی و توسعه با دقت" data-en="Designed and built with care">طراحی و توسعه با دقت :)</span>
+    </div>
+  </footer>
+
+  <script>
+    // Year in footer
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Language toggle: swaps text in elements that have data-fa / data-en
+    const html = document.documentElement;
+    const toggle = document.getElementById('lang-toggle');
+
+    function setLang(lang) {
+      const isFa = lang === 'fa';
+      html.lang = lang;
+      html.dir = isFa ? 'rtl' : 'ltr';
+      document.querySelectorAll('[data-fa][data-en]').forEach(el => {
+        el.textContent = isFa ? el.dataset.fa : el.dataset.en;
+      });
+      toggle.textContent = isFa ? 'English' : 'فارسی';
+      try { localStorage.setItem('lang', lang); } catch (e) {}
+    }
+
+    toggle.addEventListener('click', () => {
+      setLang(html.lang === 'fa' ? 'en' : 'fa');
+    });
+
+    // Restore saved language (if any)
+    let saved = null;
+    try { saved = localStorage.getItem('lang'); } catch (e) {}
+    if (saved === 'en') setLang('en');
+  </script>
+</body>
+</html>
